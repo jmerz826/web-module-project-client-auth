@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/header';
 import Login from './components/login';
+import FriendList from './components/friendlist';
 
 function App() {
   return (
@@ -12,9 +13,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={Login}/>
           <Route path='/login' component={Login}/>
-          <Route path='/friendlist'>
-            <h1>listheree</h1>
-          </Route>
+          <Route path='/friendlist' component={FriendList}/>
         </Switch>
       </div>
     </Router>
