@@ -7,6 +7,41 @@ const initialFormValues = {
     password: ''
 };
 
+const StyledLoginForm = styled.div`
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    form{
+        display:flex;
+        flex-direction:column;
+        width:50%;
+        align-items:center;
+    }
+    label{
+        text-transform: uppercase;
+        font-weight:bold;
+    }
+    input{
+        color:white;
+        background-color:black;
+        border:none;
+        padding:2% 0;
+        width:100%;
+        text-align:center;
+
+    }
+    button{
+        margin-top:5%;
+        background-color:black;
+        color:white;
+        padding: 2%;
+        width:100%;
+        border:none;
+        text-transform:uppercase;
+        font-weight:bold;
+    }
+`
+
 const Login = props => {
     const [formValues, setFormValues] = useState(initialFormValues);
 
@@ -22,6 +57,11 @@ const Login = props => {
         axios.post('http://localhost:9000/api/login', formValues)
             .then(res => {
                 console.log(res);
+                const { token, role, username } = res.data;
+                localStorage.setItem('token', token);
+                localStorage.setItem('role', role);
+                localStorage.setItem('username', username);
+                setFormValues(initialFormValues);
             })
             .catch(err => {
                 console.error(err);
@@ -29,28 +69,28 @@ const Login = props => {
     };
 
     return (
-        <div>
+        <StyledLoginForm>
             <form>
                 <h1>LOGIN</h1>
-                <label>username
+                <label>username</label>
+
                     <input
                         name='username'
                         type='text'
                         value={formValues.username}
                         onChange={handleChange}
                     />
-                </label>
-                <label>password
+                <label>password</label>
                     <input
                         name='password'
                         type='password'
                         value={formValues.password}
                         onChange={handleChange}
                     />
-                </label>
+                
                 <button onClick={handleSubmit}>Submit</button>
             </form>
-        </div>
+        </StyledLoginForm>
     );
 };
 
