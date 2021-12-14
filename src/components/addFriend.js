@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
@@ -28,6 +29,8 @@ const AddFriend = props => {
             .post('/api/friends', newFriend)
             .then(res => {
                 console.log(res);
+                setFormValues(initialFormValues);
+                props.history.push('/friendlist');
             })
             .catch(err => console.error(err))
     }
