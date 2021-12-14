@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const initialFormValues = {
     username: '',
@@ -62,6 +63,7 @@ const Login = props => {
                 localStorage.setItem('role', role);
                 localStorage.setItem('username', username);
                 setFormValues(initialFormValues);
+                props.history.push('/friendlist');
             })
             .catch(err => {
                 console.error(err);

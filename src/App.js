@@ -10,11 +10,10 @@ function App() {
       <div className="App">
         <Header />
         <Switch>
-          <Route path='/'>
-            <Login />
-          </Route>
-          <Route path='/login'>
-            <Login />
+          <Route exact path='/' component={Login}/>
+          <Route path='/login' component={Login}/>
+          <Route path='/friendlist'>
+            <h1>listheree</h1>
           </Route>
         </Switch>
       </div>
